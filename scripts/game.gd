@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 			material.set_shader_parameter("viewport_size", viewport_size)
 			material.set_shader_parameter("aspect_ratio", viewport_size.x/viewport_size.y)
 			#testing
-			material.set_shader_parameter("light_radius", material.get_shader_parameter("light_radius") - (60*delta))
+			material.set_shader_parameter("light_radius", material.get_shader_parameter("light_radius") - (delta))
 
 	
 
