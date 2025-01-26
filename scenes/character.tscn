@@ -238,12 +238,15 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pp6u6"]
-radius = 64.2806
+radius = 44.0114
 
 [node name="Character" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 2
 script = ExtResource("1_ysnyn")
 
 [node name="LitAnimatedSprite" type="AnimatedSprite2D" parent="."]
+z_as_relative = false
 position = Vector2(-20, -73)
 sprite_frames = SubResource("SpriteFrames_1l1ww")
 animation = &"idle"
@@ -251,6 +254,7 @@ autoplay = "idle"
 frame_progress = 0.475856
 
 [node name="DarknAnimatedSprite" type="AnimatedSprite2D" parent="."]
+visible = false
 light_mask = 2
 z_index = 3
 z_as_relative = false
@@ -261,7 +265,7 @@ autoplay = "idle"
 frame_progress = 0.77834
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -66)
+position = Vector2(0, -42)
 shape = SubResource("CircleShape2D_pp6u6")
 
 [node name="Camera2D" type="Camera2D" parent="."]

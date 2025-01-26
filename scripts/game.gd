@@ -13,11 +13,6 @@ func _process(delta: float) -> void:
 	# Update the shader parameter for all cached materials
 	for tile_key in material_cache.keys():
 		var material = material_cache[tile_key]
-		#testing...
-		if material.get_shader_parameter("light_radius") <= 10:
-			character_animated_sprite_lit.visible = false
-		else:
-			character_animated_sprite_lit.visible = true
 
 		#for shader
 		if material:
