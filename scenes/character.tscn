@@ -271,6 +271,6 @@ shape = SubResource("CircleShape2D_pp6u6")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -68)
 zoom = Vector2(0.75, 0.75)
-limit_left = -1792
-limit_right = 1792
+limit_left = -1800
+limit_right = 1800
 position_smoothing_enabled = true
