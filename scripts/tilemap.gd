@@ -1,6 +1,4 @@
 extends TileMap
-# for day/night cylce
-@onready var directional_light_2d: DirectionalLight2D = $"../Day_Night Cycle/DirectionalLight2D"
 
 # for character light stuff
 @onready var character: CharacterBody2D = $"../Character"
@@ -11,12 +9,14 @@ extends TileMap
 var material_cache: Dictionary = {}  # Cache to store materials for tiles
 
 
-const character_offset = Vector2(54, 37)
-const dim_speed = 5
+const character_offset = Vector2(40, 25)
+const dim_speed = 15
+const starting_radius = 450
+
 
 func _process(delta: float) -> void:
 	# Convert the character's global position from world coordinates to screen coordinates
-	var light_position_screen = get_viewport().get_screen_transform() * get_global_transform_with_canvas() * character.global_position
+	var light_position_screen =  get_global_transform_with_canvas() * character.global_position
 	var viewport_size = get_viewport().get_visible_rect().size
 	# Update the shader parameter for all cached materials
 	for tile_key in material_cache.keys():
@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 			material.set_shader_parameter("aspect_ratio", viewport_size.x/viewport_size.y)
 			#slowly decrease light strength
 			if character_lantern_glow.texture_scale > 0:
-				character_lantern_glow.texture_scale -= delta*dim_speed/40000
+				character_lantern_glow.texture_scale -= delta*dim_speed/26700
 			var current_radius = material.get_shader_parameter("light_radius") # easier to use
 			material.set_shader_parameter("light_radius", max(0, current_radius - delta*dim_speed))
 			
@@ -53,6 +53,8 @@ func _ready() -> void:
 			light.position = self.map_to_local(cell) + Vector2(12, -165)
 			light.texture_scale = 8
 			add_child(light)
+	
+	character_lantern_glow.texture_scale = starting_radius/180
 
 func _tile_data_runtime_update(layer: int, coords: Vector2i, tile_data: TileData) -> void:
 	# Create a unique key for the tile using its coordinates
@@ -64,7 +66,7 @@ func _tile_data_runtime_update(layer: int, coords: Vector2i, tile_data: TileData
 		var new_mat = ShaderMaterial.new()
 		new_mat.shader = load("res://scripts/game.gdshader")
 		new_mat.set_shader_parameter("softness", 1)
-		new_mat.set_shader_parameter("light_radius",500)
+		new_mat.set_shader_parameter("light_radius",starting_radius)
 		material_cache[tile_key] = new_mat
 		
 	

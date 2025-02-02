@@ -3,10 +3,13 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $DarknAnimatedSprite
 @onready var animated_sprite_2d_lit: AnimatedSprite2D = $LitAnimatedSprite
+@onready var health_label: Label = $"../CanvasLayer/Interface/HealthRect/Label"
+
 
 const SPEED = 500
 const ACCELERATION = 8.0
 var HEALTH = 15
+var ESSENCE = 0
 
 var inputDir: Vector2
 
@@ -30,5 +33,6 @@ func animate(player_input: Vector2):
 		
 func take_damage(amount: int) -> void:
 	HEALTH -= amount
+	health_label.text = str(HEALTH)
 	if HEALTH <= 0:
 		get_tree().reload_current_scene()

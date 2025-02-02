@@ -1,7 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://cpirtwkhpre2v"]
+[gd_scene load_steps=28 format=3 uid="uid://cpirtwkhpre2v"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_8d56f"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_5fskp"]
+[ext_resource type="Script" path="res://scripts/tilemap.gd" id="1_8d56f"]
 [ext_resource type="PackedScene" uid="uid://ceu6im883dfb2" path="res://scenes/character.tscn" id="1_rxid2"]
+[ext_resource type="Script" path="res://scenes/day_night_cycle.gd" id="1_t6qkx"]
 [ext_resource type="Texture2D" uid="uid://b1qynegf8rvdj" path="res://assets/sprites/rock asset.png" id="1_u6vr2"]
 [ext_resource type="Texture2D" uid="uid://cklqutdcxh2sw" path="res://assets/sprites/lamppost asset.png" id="2_b6y5l"]
 [ext_resource type="Texture2D" uid="uid://ilas7ibse34u" path="res://assets/sprites/tree asset.png" id="2_xrcba"]
@@ -9,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b3x2gk8wi5gld" path="res://assets/sprites/darkness overlay-sheet.png" id="3_h86yj"]
 [ext_resource type="PackedScene" uid="uid://cbm55l4a2ica0" path="res://scenes/spawner.tscn" id="7_fk1ew"]
 [ext_resource type="PackedScene" uid="uid://c1o8lttwmxggm" path="res://scenes/lantern_weapon.tscn" id="8_vvcah"]
+[ext_resource type="PackedScene" uid="uid://cc06kr5gi4bby" path="res://scenes/interface.tscn" id="11_5a4gn"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_3onoe"]
 tile_data = PackedInt32Array(458752, 65540, 3, 458753, 131076, 3, 458754, 196612, 3, 393219, 262148, 2, 458755, 262148, 3, 393220, 65540, 3, 393221, 131076, 3, 393222, 196612, 3, 327687, 262148, 2, 393223, 262148, 3, 327688, 65540, 3, 327689, 131076, 3, 327690, 196612, 3, 262155, 262148, 2, 327691, 262148, 3, 262156, 65540, 3, 262157, 131076, 3, 262158, 196612, 3, 196623, 262148, 2, 262159, 262148, 3, 196624, 65540, 3, 196625, 131076, 3, 196626, 196612, 3, 131091, 262148, 2, 196627, 262148, 3, 131092, 65540, 3, 131093, 131076, 3, 131094, 196612, 3, 65559, 65540, 3, 131095, 262148, 3, 65560, 131076, 3, 65561, 196612, 3, 26, 262148, 2, 65562, 262148, 3)
@@ -34,6 +37,7 @@ texture_region_size = Vector2i(64, 40)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j8crs"]
 texture = ExtResource("2_b6y5l")
 texture_region_size = Vector2i(296, 512)
+use_texture_padding = false
 0:0/0 = 0
 0:0/0/y_sort_origin = 120
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-90.5097, 172.534, -32.5269, 175.363, -49.4974, 200.818, -123.037, 195.161)
@@ -106,8 +110,10 @@ normal = Vector2(0, 1)
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_5fskp")
 
 [node name="Day_Night Cycle" type="Node2D" parent="."]
+script = ExtResource("1_t6qkx")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="Day_Night Cycle"]
 color = Color(0.470588, 0.529412, 0.317647, 0.898039)
@@ -115,12 +121,15 @@ energy = 1.6
 blend_mode = 1
 range_z_max = 0
 
+[node name="UpdateTimer" type="Timer" parent="Day_Night Cycle"]
+wait_time = 0.05
+autostart = true
+
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_uynpl")
 format = 2
 layer_0/name = "Darkness"
-layer_0/enabled = false
 layer_0/z_index = 2
 layer_0/tile_data = PackedInt32Array(196592, 2, 0, 196596, 2, 0, 196600, 2, 0, 196604, 2, 0, 196607, 2, 0, 131074, 2, 0, 131078, 2, 0, 131082, 2, 0, 131086, 2, 0, -65552, 2, 0, -65548, 2, 0, -65544, 2, 0, -65540, 2, 0, -65537, 2, 0, -131070, 2, 0, -131066, 2, 0, -131062, 2, 0, -131058, 2, 0, -327696, 2, 0, -327692, 2, 0, -327688, 2, 0, -327684, 2, 0, -327681, 2, 0, -393214, 2, 0, -393210, 2, 0, -393206, 2, 0, -393202, 2, 0, -589840, 2, 0, -589836, 2, 0, -589832, 2, 0, -589828, 2, 0, -589825, 2, 0, -655358, 2, 0, -655354, 2, 0, -655350, 2, 0, -655346, 2, 0, -851984, 2, 0, -851980, 2, 0, -851976, 2, 0, -851972, 2, 0, -851969, 2, 0, -917502, 2, 0, -917498, 2, 0, -917494, 2, 0, -917490, 2, 0, -1114128, 2, 0, -1114124, 2, 0, -1114120, 2, 0, -1114116, 2, 0, -1114113, 2, 0, -1179646, 2, 0, -1179642, 2, 0, -1179638, 2, 0, -1179634, 2, 0, -1376272, 2, 0, -1376268, 2, 0, -1376264, 2, 0, -1376260, 2, 0, -1376257, 2, 0, -1441790, 2, 0, -1441786, 2, 0, -1441782, 2, 0, -1441778, 2, 0, -1638416, 2, 0, -1638412, 2, 0, -1638408, 2, 0, -1638404, 2, 0, -1638401, 2, 0, -1703934, 2, 0, -1703930, 2, 0, -1703926, 2, 0, -1703922, 2, 0, -1900560, 2, 0, -1900556, 2, 0, -1900552, 2, 0, -1900548, 2, 0, -1900545, 2, 0, -1966078, 2, 0, -1966074, 2, 0, -1966070, 2, 0, -1966066, 2, 0, -2162704, 2, 0, -2162700, 2, 0, -2162696, 2, 0, -2162692, 2, 0, -2162689, 2, 0, -2228222, 2, 0, -2228218, 2, 0, -2228214, 2, 0, -2228210, 2, 0, -2424848, 2, 0, -2424844, 2, 0, -2424840, 2, 0, -2424836, 2, 0, -2424833, 2, 0, -2490366, 2, 0, -2490362, 2, 0, -2490358, 2, 0, -2490354, 2, 0, 458736, 2, 0, 458740, 2, 0, 458744, 2, 0, 458748, 2, 0, 458751, 2, 0, 393218, 2, 0, 393222, 2, 0, 393226, 2, 0, 393230, 2, 0, 720880, 2, 0, 720884, 2, 0, 720888, 2, 0, 720892, 2, 0, 720895, 2, 0, 655362, 2, 0, 655366, 2, 0, 655370, 2, 0, 655374, 2, 0)
 layer_1/name = "Foreground"
@@ -137,6 +146,20 @@ script = ExtResource("1_8d56f")
 
 [node name="Lantern Weapon2" parent="Character" instance=ExtResource("8_vvcah")]
 position = Vector2(-74, -56)
+
+[node name="MainCamera" type="Camera2D" parent="Character"]
+position = Vector2(0, -68)
+zoom = Vector2(0.5, 0.5)
+limit_left = -1780
+limit_top = -4600
+limit_right = 1780
+limit_bottom = 1400
+position_smoothing_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+editor_draw_drag_margin = true
 
 [node name="Borders" type="Node2D" parent="."]
 
@@ -163,3 +186,9 @@ position = Vector2(0, -4300)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder"]
 shape = SubResource("WorldBoundaryShape2D_4gh63")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Interface" parent="CanvasLayer" instance=ExtResource("11_5a4gn")]
+
+[connection signal="timeout" from="Day_Night Cycle/UpdateTimer" to="Day_Night Cycle" method="_on_update_timer_timeout"]

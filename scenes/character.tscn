@@ -326,15 +326,6 @@ frame_progress = 0.77834
 position = Vector2(0, -42)
 shape = SubResource("CircleShape2D_pp6u6")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -68)
-zoom = Vector2(0.75, 0.75)
-limit_left = -1780
-limit_top = -4600
-limit_right = 1780
-limit_bottom = 1400
-position_smoothing_enabled = true
-
 [node name="HurtBox" type="Area2D" parent="."]
 script = ExtResource("4_j82ao")
 
