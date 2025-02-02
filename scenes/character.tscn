@@ -1,8 +1,21 @@
-[gd_scene load_steps=38 format=3 uid="uid://ceu6im883dfb2"]
+[gd_scene load_steps=44 format=3 uid="uid://ceu6im883dfb2"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_ysnyn"]
 [ext_resource type="Texture2D" uid="uid://c0hcxdw032hhb" path="res://assets/sprites/lanturn char idle lit.png" id="2_h53cq"]
 [ext_resource type="Texture2D" uid="uid://nuga5ngpke1e" path="res://assets/sprites/lanturn char idle.png" id="2_nyni3"]
+[ext_resource type="Script" path="res://scripts/HurtBox.gd" id="4_j82ao"]
+
+[sub_resource type="Gradient" id="Gradient_nt68m"]
+offsets = PackedFloat32Array(0, 0.12987, 0.272727, 0.753247)
+colors = PackedColorArray(0.793939, 0.793939, 0.793939, 1, 0.484848, 0.484848, 0.484848, 1, 0.299625, 0.299625, 0.299625, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_phuiq"]
+gradient = SubResource("Gradient_nt68m")
+width = 900
+height = 900
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.95, 0.95)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4fb6l"]
 atlas = ExtResource("2_h53cq")
@@ -240,10 +253,55 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_pp6u6"]
 radius = 44.0114
 
+[sub_resource type="Animation" id="Animation_pwfc4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LanternGlow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-73, -47)]
+}
+
+[sub_resource type="Animation" id="Animation_au1up"]
+resource_name = "move light"
+length = 0.8333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LanternGlow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4167, 0.8333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-73, -47), Vector2(-70, -42), Vector2(-73, -47)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfaco"]
+_data = {
+"RESET": SubResource("Animation_pwfc4"),
+"move light": SubResource("Animation_au1up")
+}
+
 [node name="Character" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_ysnyn")
+
+[node name="LanternGlow" type="PointLight2D" parent="."]
+position = Vector2(-73, -47)
+color = Color(0.698039, 0.835294, 0.819608, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_phuiq")
+texture_scale = 1.5
 
 [node name="LitAnimatedSprite" type="AnimatedSprite2D" parent="."]
 z_as_relative = false
@@ -251,7 +309,7 @@ position = Vector2(-20, -73)
 sprite_frames = SubResource("SpriteFrames_1l1ww")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.475856
+frame_progress = 0.394306
 
 [node name="DarknAnimatedSprite" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -271,6 +329,21 @@ shape = SubResource("CircleShape2D_pp6u6")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -68)
 zoom = Vector2(0.75, 0.75)
-limit_left = -1800
-limit_right = 1800
+limit_left = -1780
+limit_top = -4600
+limit_right = 1780
+limit_bottom = 1400
 position_smoothing_enabled = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("4_j82ao")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -42)
+shape = SubResource("CircleShape2D_pp6u6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gfaco")
+}
+autoplay = "move light"

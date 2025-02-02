@@ -22,6 +22,9 @@ void fragment() {
     // Create a smooth circular mask
     float mask = smoothstep(light_radius/ viewport_size.x,
                             (light_radius + softness) / viewport_size.x, dist);
+	
+	if (COLOR.a != 0.0) {
+		COLOR.a = mask;
+	}
 
-    COLOR.a = mask;
 }

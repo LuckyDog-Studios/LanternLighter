@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $DarknAnimatedSprite
@@ -5,6 +6,7 @@ extends CharacterBody2D
 
 const SPEED = 500
 const ACCELERATION = 8.0
+var HEALTH = 15
 
 var inputDir: Vector2
 
@@ -25,3 +27,8 @@ func animate(player_input: Vector2):
 		animated_sprite_2d_lit.play("idle")
 	if animated_sprite_2d.animation == "idle":
 		animated_sprite_2d_lit.frame = animated_sprite_2d.frame
+		
+func take_damage(amount: int) -> void:
+	HEALTH -= amount
+	if HEALTH <= 0:
+		get_tree().reload_current_scene()

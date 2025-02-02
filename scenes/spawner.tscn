@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbm55l4a2ica0"]
+
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="1_4vqpu"]
+[ext_resource type="PackedScene" uid="uid://c4w25532wqi6g" path="res://scenes/spawn_location.tscn" id="2_lpog0"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_4vqpu")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(475, -600)
+
+[node name="Marker2D2" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(-447, -600)
+
+[node name="Marker2D3" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(-900, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(900, 0)
+
+[node name="Marker2D5" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(447, 600)
+
+[node name="Marker2D6" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(-447, 600)
+
+[node name="Spawn Location" parent="." instance=ExtResource("2_lpog0")]
+position = Vector2(447, -600)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

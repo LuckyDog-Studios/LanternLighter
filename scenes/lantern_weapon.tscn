@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1o8lttwmxggm"]
+
+[ext_resource type="Script" path="res://scripts/lantern_weapon.gd" id="1_cxec1"]
+
+[node name="Lantern Weapon" type="Node2D"]
+script = ExtResource("1_cxec1")
+
+[node name="WeaponTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="WeaponTimer" to="." method="_on_weapon_timer_timeout"]
