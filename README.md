@@ -35,7 +35,7 @@ I used the following tools to make this prototype:
 ---
 
 ## Minimum Requirements
-- Uses GLSL shader so it requires any GPU
+- Uses GLSL shader so it will only run with appropriate GPU
 
 ---
 
