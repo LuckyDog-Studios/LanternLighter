@@ -5,6 +5,13 @@ as time passes, the player’s vision gradually fades, making navigation and sur
 
 ---
 
+## Tools:
+I used the following tools to make this prototype:
+- Godot/Gdscript
+- Adobe Illustrator
+
+---
+
 ## How to Run
 
 **WINDOWS:**
