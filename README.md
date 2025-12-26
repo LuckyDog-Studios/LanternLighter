@@ -34,9 +34,9 @@ I used the following tools to make this prototype:
 
 ---
 
-Survive as long as you can while the darkness closes in.
+## Minimum Requirements
+- Uses GLSL shader so it requires any GPU
 
 ---
 
-## Minimum Requirements
-- Uses GLSL shader so it requires any GPU
+Survive as long as you can while the darkness closes in.
