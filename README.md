@@ -7,9 +7,17 @@ as time passes, the player’s vision gradually fades, making navigation and sur
 
 ## How to Run
 
-1. Download **LanternLighter.exe**
+**WINDOWS:**
+1. Download **LanternLighter.exe** in WINDOWSEXE folder
 2. Launch the executable to start playing
 
+**MAC:**
+1. Download and extract the zip file in MAC folder
+2. Launch the executable to start playing
+
+**LINUX:**
+1. Download and launch files in LINUX folder
+2. Run files to start playing
 ---
 
 ## Controls
