@@ -15,7 +15,7 @@ I used the following tools to make this prototype:
 ## How to Run
 
 **WINDOWS:**
-1. Download **LanternLighter.exe** in WINDOWSEXE folder
+1. Download the WINDOWSEXE folder
 2. Launch the executable to start playing
 
 **MAC:**
@@ -23,7 +23,7 @@ I used the following tools to make this prototype:
 2. Launch the executable to start playing
 
 **LINUX:**
-1. Download and launch files in LINUX folder
+1. Download the LINUX folder
 2. Run files to start playing
 ---
 
