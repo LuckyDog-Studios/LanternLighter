@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://unc68iy2a031"]
+
+[ext_resource type="FontFile" uid="uid://ckkla7gvdi702" path="res://font/MightySouly-lxggD.ttf" id="1_bp7wj"]
+
+[resource]
+default_font = ExtResource("1_bp7wj")
+/fonts/MightSoul = ExtResource("1_bp7wj")

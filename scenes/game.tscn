@@ -1,9 +1,9 @@
 [gd_scene load_steps=28 format=3 uid="uid://cpirtwkhpre2v"]
 
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_5fskp"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_5fskp"]
 [ext_resource type="Script" path="res://scripts/tilemap.gd" id="1_8d56f"]
 [ext_resource type="PackedScene" uid="uid://ceu6im883dfb2" path="res://scenes/character.tscn" id="1_rxid2"]
-[ext_resource type="Script" path="res://scenes/day_night_cycle.gd" id="1_t6qkx"]
+[ext_resource type="Script" path="res://scripts/day_night_cycle.gd" id="1_t6qkx"]
 [ext_resource type="Texture2D" uid="uid://b1qynegf8rvdj" path="res://assets/sprites/rock asset.png" id="1_u6vr2"]
 [ext_resource type="Texture2D" uid="uid://cklqutdcxh2sw" path="res://assets/sprites/lamppost asset.png" id="2_b6y5l"]
 [ext_resource type="Texture2D" uid="uid://ilas7ibse34u" path="res://assets/sprites/tree asset.png" id="2_xrcba"]
